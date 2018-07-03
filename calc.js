@@ -1,8 +1,11 @@
 /*
  * Implement all your JavaScript in this file!
  */
+// resetState is true when the page has just been loaded, or an operation was just completed
 var resetState = true
+// valInputState is true when someone starts to enter digits
 var valInputState = false
+// outputState is true when equal button is pressed
 var outputState = false
 var ignoreEqualAsNextOperator = false
 
@@ -22,7 +25,6 @@ $('#button1, #button2, #button3, #button4, #button5, #button6, #button7, #button
 
 	if (!valInputState) {
 		$('#display').val($(this).val());
-		// resetState = false
 		valInputState = true
 		outputState = false
 		ignoreEqualAsNextOperator = false
@@ -38,10 +40,14 @@ $('#clearButton').click(function() {
 	resetState = true
 	valInputState = false
 	outputState = false
+	ignoreEqualAsNextOperator = false
 
 	firstVal = ''
 	secVal = ''
 	arithOp = ''
+
+	stdSecVal = ''
+	stdArithOp = ''
 
 	$('#display').val('');
  })
@@ -52,13 +58,14 @@ function equal() {
 	// Testing
 	$('#output').html('equalsButton was clicked');
 
+	// if the app is in the reset state and the user enters some numbers, and then an operator, 
+	// and then clicks the equals button without entering another operand, 
+	// the display should be the same and the equals button should be ignored
 	if (!ignoreEqualAsNextOperator) {
-		// $('#output').html('hiii');
 		if (outputState) {
 			firstVal = arithmetic(firstVal, stdSecVal, stdArithOp)
 			$('#display').val(firstVal);
 		} else if (resetState) {
-			$('#output').html('hiii');
 			$('#display').val($('#display').val());
 		}
 		else {
