@@ -52,12 +52,12 @@ function equal() {
 	// Testing
 	$('#output').html('equalsButton was clicked');
 
-	if (ignoreEqualAsNextOperator === false) {
+	if (!ignoreEqualAsNextOperator) {
 		// $('#output').html('hiii');
-		if (outputState === true) {
+		if (outputState) {
 			firstVal = arithmetic(firstVal, stdSecVal, stdArithOp)
 			$('#display').val(firstVal);
-		} else if (resetState === true) {
+		} else if (resetState) {
 			$('#output').html('hiii');
 			$('#display').val($('#display').val());
 		}
@@ -93,7 +93,7 @@ $('#addButton, #subtractButton, #multiplyButton, #divideButton').click(function(
 		equal()
 	}
 
-	if (resetState === true) {
+	if (resetState) {
 		ignoreEqualAsNextOperator = true
 	}
 
